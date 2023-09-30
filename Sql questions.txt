@@ -1,0 +1,24 @@
+Questions For Structured Query Language.
+
+---------->  Create a table by the name of Employees with columns id, name, age, salary, department and city. And enter atleast 50 records in the table.
+
+----------> Try to Solve the following question based on table.
+
+
+
+QUESTION 1). Fetch the record of all the employees whose salary is greater than 50k and age is less than 40?
+
+Question 2). Suppose your head has told you to provide the increment of 20% of their salary to those employees earning salary more than 50k and 10% to those who are earning less than 50k?
+
+Question 3). Write a querry to convert the salary of id number 5 upto 30% of their actual salary?
+
+Question 4). Fetch the record of all those employees who are earning salary greater than the average salary?
+
+Question 5). Fetch the record of all the employees with only even id?
+
+Question 6). Write a querry to generate record of those employees whose age is between 30-40 ?
+
+Question 7). Find out those department where total salary is greater than 30 lakhs also keep in mind you should not include any decimal values?
+
+Question 8). Write a querry in which you can devide the city of your table in three category i.e. North India, Central India and South India also make sure you 
+have to divide employees according to their salary into upper,middle and lower Executive?
