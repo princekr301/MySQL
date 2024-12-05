@@ -1,0 +1,43 @@
+SQL Questions
+-----------------------------------------------------------------------------------------------
+
+What is a Foreign Key?
+Difference Between Primary Key and Foreign Key
+Difference Between UNION and JOIN
+Explain COALESCE
+NOT Operator and <> in SQL
+Wildcards in SQL
+Query to Find the Highest Salary From Each Department
+Query to Find the Third Highest Salary
+Common Table Expression (CTE) Implementation
+
+
+Output Using RANK and DENSE_RANK
+Query to Copy Data from Another Table
+Query to Delete Duplicate Records
+SQL Join Types
+
+
+
+Power BI Questions
+--------------------------------------------------------------------------------------------------
+Ways to Get Data in Power BI
+Excel files (XLSX, CSV).
+Databases (SQL Server, MySQL, Oracle).
+Online services (SharePoint, Azure, Salesforce).
+Web scraping (from web URLs).
+Direct API integration.
+Difference Between Direct Query and Import Query
+Direct Query: Connects to the data source live, queries are sent in real-time, ideal for large datasets.
+Import Query: Imports a copy of the data into Power BI, offering better performance but requires periodic updates.
+Level of Security in Power BI
+Row-Level Security (RLS): Restricts data based on user roles.
+Encryption: Data is encrypted both at rest and in transit.
+User Authentication: Managed via Azure Active Directory (AAD).
+What is Schedule Refresh?
+Difference Between Power Query Editor and DAX
+Difference Between Calculated Column and Measure
+Calculated Column: Stored in the data model and evaluated for each row.
+Measure: Calculated dynamically based on the report's filters and context.
+Implement CALCULATE and FILTER in DAX
+Scenario for Pie Chart.
