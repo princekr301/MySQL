@@ -1,0 +1,40 @@
+
+---------------------------------------------------------------
+				CTE
+-------------------------------------------------------------
+a Common Table Expression (CTE) is a temporary named result 
+set that you can refer to within a SQL query.
+
+This helps you break down complex queries into smaller,
+ more manageable parts.
+
+
+a Common Table Expression (CTE) is a temporary result set that you can 
+reference within a SELECT, INSERT, UPDATE, or DELETE statement.
+ CTEs are used to create a named query that can be used for 
+simplification and readability of complex queries,
+ improving performance or recursion tasks.
+
+
+Benefits of Using CTEs
+Improved readability: Break down complex queries into simpler parts.
+
+Modularity: Separate subqueries that can be referenced multiple times.
+
+Recursion: CTEs can be recursive, allowing tasks like hierarchical data processing.
+
+
+SYNTAX OF SIMPLE CTE
+-------------------------------------------------------------------------
+WITH TotalSales AS 
+	( SELECT Product, SUM(Quantity * Price) AS Total
+			 FROM Sales GROUP BY Product ) 
+
+SELECT Product, Total FROM TotalSales;
+-------------------------------------------------------------------------
+
+
+
+
+
+

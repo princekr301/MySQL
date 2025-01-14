@@ -1,0 +1,112 @@
+STORE PROCEDURE
+
+A STORE PROCEDURE IS A DATABASE OBJECT
+
+A STORE PROCEDURE  IS A SERIES OF DECLARATIVE SQL STATEMENTS.
+
+A STORE PROCEDURE CAN BE STORED IN THE DATABASE AND CAN BE REUSED OVER AND OVER AGAIN
+
+
+THERE TWO TYEPS OF STORE PRCEDURE
+
+1.  USER DEFIENED STORE PROCEDURE
+2. SYSTEM STORED PROCEDURE
+ 
+
+
+SYNTAX OF STORE PROCEDURE
+
+----------------------------------------------
+DELIMITER //
+CREATE PROCEDURE Getall()
+BEGIN
+    SELECT * FROM emp;
+END //
+DELIMITER ;
+
+
+--------------------------------------
+call getall();
+
+
+
+-----------------------------------------------
+STORE PROCEDURE SYNTAX WITH PERAMATER
+----------------------------------------------
+
+
+DELIMITER //
+CREATE PROCEDURE PP(IN DEPT VARCHAR(100))
+BEGIN
+	SELECT * FROM EMP WHERE DEPARTMENT = DEPT;
+END //
+DELIMITER ;
+
+call PP("DATA ANALYST");
+
+
+
+DELIMITER @@
+CREATE PROCEDURE MA(
+	IN A INT, 
+	IN C VARCHAR(200))
+		BEGIN
+			SELECT * FROM EMP WHERE AGE>A AND CITY = C;
+		END @@
+DELIMITER ;
+
+
+
+CALL MA(50,"NOIDA");
+
+DROP PROCEDURE MA;
+
+
+
+
+
+
+
+
+CREATE PROCEDURE PRINCE_DPT
+	@DEPT VARCHAR(255)
+AS
+BEGIN
+	SELECT * FROM EMP WHERE DEPARTMENT = @DEPT;
+END;
+
+
+
+
+RUN THIS STORE PRCEDURE 
+----------------------------------------------------
+
+EXEC PRINCE_DPT @DEPT = "DATA ANALYST";
+
+
+
+WHAT IS DBMS AND RDBMS IN SIMPLE TERM
+-------------------------------------------------------------
+DBMS and RDBMS are two types of systems used to manage and organize data, but they serve slightly different purposes and have different structures.
+
+DBMS (Database Management System):
+Definition: A DBMS is software that allows you to create, manage, and manipulate databases. It provides tools for storing, retrieving, and managing data in a database.
+
+
+RDBMS (Relational Database Management System):
+Definition: An RDBMS is a type of DBMS that organizes data into tables that are related to each other based on common fields. It uses a structured query language (SQL) for database access and manipulation.
+
+
+DBMS: General system for managing databases.
+
+RDBMS: Specialized DBMS that uses a relational model to structure data into tables with relationships.
+
+
+
+
+
+
+
+
+
+
