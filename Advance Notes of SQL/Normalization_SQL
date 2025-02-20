@@ -1,0 +1,24 @@
+Normalization in MySQL (and other relational databases) is a process used to organize a database in a way that reduces redundancy and dependency by dividing 
+large tables into smaller, related tables. This process aims to ensure that the database is efficient, maintains data integrity, 
+and minimizes the potential for anomalies during data operations (such as inserts, updates, and deletes).
+
+
+There are several normal forms in the normalization process, each with specific criteria:
+--------------------------------------------------------------------------------------------------------------------------------------
+First Normal Form (1NF): Ensures that each column contains atomic (indivisible) values and each column contains values of a single type.
+Example: Instead of having a column with comma-separated values, split these values into individual rows.
+
+Second Normal Form (2NF): Achieves 1NF and ensures that all non-key columns are fully dependent on the primary key.
+Example: Remove partial dependencies where columns are dependent on a part of the composite primary key.
+
+Third Normal Form (3NF): Achieves 2NF and ensures that all columns are only dependent on the primary key.
+Example: Remove transitive dependencies where non-key columns depend on other non-key columns.
+
+
+Boyce-Codd Normal Form (BCNF): A stricter version of 3NF, ensuring that for any functional dependency 
+𝑋→𝑌, X is a super key.
+
+Example: Ensures no redundancy due to functional dependencies.
+
+Fourth Normal Form (4NF): Achieves BCNF and ensures no multi-valued dependencies.
+Example: Separate multi-valued facts into separate tables.
