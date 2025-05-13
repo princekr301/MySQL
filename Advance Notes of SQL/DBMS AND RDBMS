@@ -1,0 +1,67 @@
+
+DATABASE
+--------------------------------------------------------------------------------------------------------------------
+In SQL, a **database** is a structured collection of data that is organized and stored for easy access, management,
+and retrieval. It acts as a container for tables, views, stored procedures, and other database objects.
+
+### Key Features of a Database:
+- **Stores Data in Tables** – Data is arranged in rows and columns inside tables.
+- **Ensures Data Integrity** – Uses constraints like **Primary Key, Foreign Key, NOT NULL** to maintain accuracy.
+- **Supports Queries** – SQL commands like `SELECT`, `INSERT`, `UPDATE`, and `DELETE` allow data manipulation.
+- **Allows Relationships** – Tables can be linked using **keys** to create relational databases.
+- **Manages Transactions** – Supports **commit** and **rollback** operations for safe data handling.
+
+
+DBMS
+--------------------------------------------------------------------------------------------------------------------
+A Database Management System (DBMS)** is software that allows users to store, retrieve, and manage data efficiently.
+It provides an interface for interacting with databases using SQL and ensures data integrity, security, and consistency.
+
+### Key Functions of a DBMS:
+- **Data Storage & Organization** – Manages large amounts of structured data in tables.
+- **Query Processing** – Allows users to execute SQL queries (`SELECT`, `INSERT`, `UPDATE`, `DELETE`) to manipulate data.
+- **Data Integrity & Security** – Enforces constraints (Primary Key, Foreign Key) and handles user access control.
+- **Transaction Management** – Supports operations like **COMMIT** and **ROLLBACK** to ensure reliable database transactions.
+- **Concurrency Control** – Prevents conflicts when multiple users access the database simultaneously.
+
+### Example of Popular DBMS:
+Some widely used DBMS are:
+- **MySQL** – Open-source, widely used in web applications.
+- **SQL Server** – Microsoft’s relational DBMS for enterprise applications.
+- **PostgreSQL** – Powerful, open-source system with advanced features.
+- **Oracle** – Enterprise-grade DBMS used in large organizations.
+
+
+RDBMS
+----------------------------------------------------------------------------------------------------------
+A Relational Database Management System (RDBMS)** is a type of **DBMS** that stores data in a
+**structured format** using tables with rows and columns. Unlike a general DBMS, an 
+**RDBMS enforces relationships between tables** using keys, making it ideal for
+organizing and querying structured data efficiently.
+
+### Key Features of RDBMS:
+- **Tables & Relationships** – Data is stored in tables and connected using **Primary Keys** and **Foreign Keys**.
+- **SQL Support** – Uses Structured Query Language (SQL) for querying, updating, and managing data.
+- **Data Integrity & Normalization** – Enforces **constraints** to maintain accuracy and reduce redundancy.
+- **Transactions & ACID Properties** – Ensures **Atomicity, Consistency, Isolation, and Durability** for safe data management.
+- **Multi-user Access & Concurrency Control** – Allows multiple users to access the database while maintaining consistency.
+
+### Example: How Tables Are Related in RDBMS
+Imagine two tables in a **Sales Database**:
+
+#### **Customers Table**
+| CustomerID | Name   | City   |
+|------------|--------|--------|
+| 101       | Alice  | Delhi  |
+| 102       | Bob    | Mumbai |
+
+#### **Orders Table**
+| OrderID | CustomerID | Product   |
+|---------|------------|-----------|
+| 201     | 101        | Laptop    |
+| 202     | 102        | Phone     |
+
+Here:
+- **CustomerID** is a **Primary Key** in the Customers table.
+- **CustomerID** acts as a **Foreign Key** in the Orders table, linking customer purchases.
+
