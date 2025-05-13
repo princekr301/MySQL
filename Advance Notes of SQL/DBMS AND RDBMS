@@ -14,6 +14,9 @@ and retrieval. It acts as a container for tables, views, stored procedures, and 
 
 DBMS
 --------------------------------------------------------------------------------------------------------------------
+A Database Management System (DBMS) is a software that manages and controls a database, allowing users to create,
+access, and manipulate data.
+----------------------------------------------------(  OR  )--------------------------------------------------------
 A Database Management System (DBMS)** is software that allows users to store, retrieve, and manage data efficiently.
 It provides an interface for interacting with databases using SQL and ensures data integrity, security, and consistency.
 
@@ -33,7 +36,10 @@ Some widely used DBMS are:
 
 
 RDBMS
-----------------------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------------------------------
+An RDBMS, or Relational Database Management System, is a specific type of DBMS that stores and organizes data
+in tables, with relationships between tables defined by keys
+--------------------------------------------(  OR  )------------------------------------------------------------------
 A Relational Database Management System (RDBMS)** is a type of **DBMS** that stores data in a
 **structured format** using tables with rows and columns. Unlike a general DBMS, an 
 **RDBMS enforces relationships between tables** using keys, making it ideal for
@@ -64,4 +70,18 @@ Imagine two tables in a **Sales Database**:
 Here:
 - **CustomerID** is a **Primary Key** in the Customers table.
 - **CustomerID** acts as a **Foreign Key** in the Orders table, linking customer purchases.
+
+
+
+
+
+=================================================================================================================
+A Database Management System (DBMS) is a software that manages and controls a database, allowing users to create,
+access, and manipulate data. 
+
+=================================================================================================================
+An RDBMS, or Relational Database Management System, is a specific type of DBMS that stores and organizes data
+in tables, with relationships between tables defined by keys
+
+
 
