@@ -1,0 +1,45 @@
+1.  City-wise Department Performance
+Goal: Find the department in each city with the highest total salary payout.
+ Approach:
+CTE1: Calculate total salary per city and department.
+
+
+CTE2: Rank departments per city by total salary using ROW_NUMBER().
+
+
+CTE3: Select top-ranked department per city.
+
+ 2. Salary Distribution & Ranking
+Goal: Rank employees based on salary within each department and city.
+ Approach:
+CTE1: Calculate salary rank per department using RANK().
+
+
+CTE2: Calculate salary rank per city using RANK().
+
+
+CTE3: Combine CTE1 and CTE2 to find employees with high ranks in both metrics.
+
+3. Categorize employees into salary tiers (Low, Medium, High) and rank them within departments.
+ Approach:
+CTE1: Add a salary_tier column using CASE (e.g., Low < 30000, Medium 30000–70000, High > 70000).
+
+
+CTE2: Rank employees within each department by salary using RANK().
+
+
+CTE3: Select top 2 employees in each department and show salary tier.
+ 
+
+
+
+4. Age & Salary Bracket Ranking
+Goal: Classify employees by age groups and rank by salary within each group.
+ Approach:
+CTE1: Use CASE to define Age_Group (e.g., <30 = Young, 30-50 = Mid, >50 = Senior).
+
+
+CTE2: Rank employees within each age group by salary DESC.
+
+
+CTE3: Show top 3 earners per age group.
