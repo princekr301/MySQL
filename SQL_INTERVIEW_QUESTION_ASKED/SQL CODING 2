@@ -1,0 +1,4 @@
+Find the memid of members who have made more than the average number of bookings across all members. 
+Return each such member's memid along with their total number of bookings.
+
+TABLE : BOOKDATA
