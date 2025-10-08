@@ -1,0 +1,12 @@
+Find the department with the highest average salary and display the department name along with the average salary.
+
+ Name	Department	Salary
+John	Sales	1000
+Root	Sales	2000
+Cook	Sales	3000
+Kevin	Finance	2200
+Johnson	Finance	2900
+Smith	Finance	3000
+Marsh	IT	1100
+Garry	IT	2100
+Tuffnel	IT	1900
