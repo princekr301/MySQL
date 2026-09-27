@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SQL Commands: DDL & DML — Prince Kumar</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    background: #0f172a;
+    color: #e2e8f0;
+    overflow: hidden;
+  }
+  .slide {
+    position: fixed; inset: 0;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 8%;
+    background: radial-gradient(ellipse at top left, #1e293b 0%, #0f172a 60%);
+  }
+  .slide.active { display: flex; animation: fadeIn .6s ease; }
+  @keyframes fadeIn { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform:none;} }
+
+  h1 { font-size: 3.4rem; color:#38bdf8; margin-bottom: 14px; letter-spacing:1px; }
+  h2 { font-size: 2.4rem; color:#38bdf8; margin-bottom: 24px; border-bottom: 3px solid #38bdf8; padding-bottom:10px; }
+  h3 { font-size: 1.3rem; color:#f472b6; margin-bottom: 8px; }
+
+  .subtitle { font-size: 1.5rem; color:#cbd5e1; }
+  .badge {
+    display:inline-block; background: linear-gradient(135deg,#38bdf8,#818cf8);
+    color:#0f172a; font-weight:700; padding:8px 22px; border-radius:30px;
+    margin-bottom:20px; letter-spacing:2px; font-size:.9rem;
+  }
+  .trainer {
+    margin-top: 40px; text-align:center;
+    background: rgba(56,189,248,.08);
+    border: 1px solid rgba(56,189,248,.3);
+    border-radius: 16px; padding: 24px 48px;
+  }
+  .trainer .name { font-size: 1.8rem; font-weight:700; color:#f8fafc; }
+  .trainer .role { font-size: 1.05rem; color:#38bdf8; margin-top:4px; letter-spacing:1px; }
+
+  .grid { display:grid; gap:22px; width:100%; max-width:1100px; }
+  .grid.two { grid-template-columns: 1fr 1fr; }
+  .grid.three { grid-template-columns: 1fr 1fr; }
+
+  .card {
+    background: rgba(30,41,59,.75);
+    border: 1px solid rgba(148,163,184,.15);
+    border-left: 5px solid #38bdf8;
+    border-radius: 14px;
+    padding: 22px 26px;
+    transition: transform .25s ease;
+  }
+  .card:hover { transform: translateY(-4px); }
+  .card p { color:#cbd5e1; font-size: 1rem; line-height:1.55; margin-top:6px; }
+
+  .cmd {
+    display:inline-block; background:#7c3aed; color:#fff;
+    font-family: Consolas, monospace; font-size:1.15rem; font-weight:700;
+    padding: 6px 16px; border-radius: 8px; margin-bottom: 10px; letter-spacing:1px;
+  }
+  pre {
+    background:#0b1220; border:1px solid rgba(148,163,184,.2);
+    border-radius: 10px; padding: 16px 20px;
+    font-family: Consolas, 'Courier New', monospace;
+    font-size: .98rem; line-height: 1.6;
+    overflow-x: auto; margin-top: 12px; width:100%;
+    max-width: 1000px;
+  }
+  .kw { color:#38bdf8; font-weight:700; }
+  .str { color:#86efac; }
+  .cm { color:#64748b; }
+
+  .compare { display:flex; gap:26px; width:100%; max-width:1100px; }
+  .compare > div {
+    flex:1; background: rgba(30,41,59,.75); border-radius:14px; padding:26px;
+    border: 1px solid rgba(148,163,184,.15);
+  }
+  .ddl-box { border-top: 5px solid #38bdf8; }
+  .dml-box { border-top: 5px solid #f472b6; }
+  .compare ul { list-style:none; margin-top:12px; }
+  .compare li { padding: 8px 0; font-size:1.05rem; color:#cbd5e1; border-bottom:1px dashed rgba(148,163,184,.15); }
+  .compare li::before { content:'▸ '; color:#38bdf8; }
+  .dml-box li::before { color:#f472b6; }
+
+  .nav {
+    position: fixed; bottom: 24px; right: 30px;
+    display:flex; gap:10px; align-items:center; z-index:10;
+    font-size:.9rem; color:#94a3b8;
+  }
+  .nav button {
+    background:#38bdf8; color:#0f172a; border:none;
+    padding:10px 20px; border-radius:8px; font-size:1rem; font-weight:700;
+    cursor:pointer;
+  }
+  .nav button:hover { background:#7dd3fc; }
+  .progress {
+    position: fixed; top:0; left:0; height:4px;
+    background: linear-gradient(90deg,#38bdf8,#818cf8);
+    transition: width .3s ease; z-index:10;
+  }
+  .counter { position: fixed; top:18px; right:30px; color:#64748b; font-size:.9rem; z-index:10; letter-spacing:1px; }
+  .summary-table { border-collapse: collapse; margin-top:14px; width:100%; max-width:1000px; }
+  .summary-table th, .summary-table td { border:1px solid rgba(148,163,184,.25); padding:12px 18px; text-align:left; font-size:1rem; }
+  .summary-table th { background: rgba(56,189,248,.12); color:#38bdf8; }
+  .summary-table td { color:#cbd5e1; }
+</style>
+<base target="_blank">
+</head>
+<body>
+
+<div class="progress" id="progress"></div>
+<div class="counter" id="counter"></div>
+
+<!-- SLIDE 1 : Title -->
+<div class="slide active">
+  <div class="badge">SQL TRAINING MODULE</div>
+  <h1>SQL Commands</h1>
+  <p class="subtitle">DDL &amp; DML — Structured Query Language Fundamentals</p>
+  <div class="trainer">
+    <div class="name">Prince Kumar</div>
+    <div class="role">Data Science &amp; Analytics Trainer</div>
+  </div>
+</div>
+
+<!-- SLIDE 2 : Agenda / Overview -->
+<div class="slide">
+  <h2>What is SQL?</h2>
+  <div class="grid two">
+    <div class="card">
+      <h3>Definition</h3>
+      <p>SQL (Structured Query Language) is the standard language used to communicate with relational databases. It lets us create, manipulate, and query data stored in tables.</p>
+    </div>
+    <div class="card">
+      <h3>Main Categories</h3>
+      <p><b style="color:#38bdf8">DDL</b> — Data Definition Language → defines the <b>structure</b> of database objects (tables, schemas).<br><br>
+         <b style="color:#f472b6">DML</b> — Data Manipulation Language → works with the <b>data inside</b> those objects.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 3 : DDL vs DML -->
+<div class="slide">
+  <h2>DDL vs DML — Quick Comparison</h2>
+  <div class="compare">
+    <div class="ddl-box">
+      <h3 style="color:#38bdf8">DDL (4 Commands)</h3>
+      <ul>
+        <li>CREATE — make a new table/object</li>
+        <li>ALTER — modify an existing table</li>
+        <li>DROP — delete the table completely</li>
+        <li>TRUNCATE — remove all rows, keep table</li>
+      </ul>
+    </div>
+    <div class="dml-box">
+      <h3>DML (3 Commands)</h3>
+      <ul>
+        <li>INSERT — add new rows of data</li>
+        <li>UPDATE — change existing data</li>
+        <li>DELETE — remove rows of data</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SLIDE 4 : CREATE -->
+<div class="slide">
+  <h2>DDL Command 1 — CREATE</h2>
+  <div class="card">
+    <span class="cmd">CREATE</span>
+    <p><b>Purpose:</b> Creates a new database object such as a table, along with its columns, data types, and constraints. This is the very first step in defining the database structure.</p>
+  </div>
+  <pre><span class="kw">CREATE TABLE</span> employees (
+    emp_id     <span class="kw">INT PRIMARY KEY</span>,
+    first_name <span class="kw">VARCHAR</span>(50) <span class="kw">NOT NULL</span>,
+    last_name  <span class="kw">VARCHAR</span>(50),
+    salary     <span class="kw">DECIMAL</span>(10,2),
+    hire_date  <span class="kw">DATE</span> <span class="kw">DEFAULT</span> <span class="kw">CURRENT_DATE</span>
+);</pre>
+</div>
+
+<!-- SLIDE 5 : ALTER -->
+<div class="slide">
+  <h2>DDL Command 2 — ALTER</h2>
+  <div class="card">
+    <span class="cmd">ALTER</span>
+    <p><b>Purpose:</b> Modifies the structure of an existing table — you can add new columns, remove columns, or change a column's data type. The data inside the table is preserved.</p>
+  </div>
+  <pre><span class="cm">-- Add a new column</span>
+<span class="kw">ALTER TABLE</span> employees <span class="kw">ADD</span> email <span class="kw">VARCHAR</span>(100);
+
+<span class="cm">-- Modify a column's data type</span>
+<span class="kw">ALTER TABLE</span> employees <span class="kw">MODIFY</span> salary <span class="kw">DECIMAL</span>(12,2);
+
+<span class="cm">-- Drop a column</span>
+<span class="kw">ALTER TABLE</span> employees <span class="kw">DROP COLUMN</span> email;</pre>
+</div>
+
+<!-- SLIDE 6 : DROP -->
+<div class="slide">
+  <h2>DDL Command 3 — DROP</h2>
+  <div class="card">
+    <span class="cmd">DROP</span>
+    <p><b>Purpose:</b> Permanently deletes a table (or other object) along with <b>all of its data and structure</b>. This action cannot be rolled back — use with caution!</p>
+  </div>
+  <pre><span class="cm">-- Remove the employees table completely</span>
+<span class="kw">DROP TABLE</span> employees;</pre>
+</div>
+
+<!-- SLIDE 7 : TRUNCATE -->
+<div class="slide">
+  <h2>DDL Command 4 — TRUNCATE</h2>
+  <div class="card">
+    <span class="cmd">TRUNCATE</span>
+    <p><b>Purpose:</b> Removes <b>all rows</b> from a table instantly, but keeps the table structure (columns, constraints) intact so new data can be inserted later. Faster than DELETE for removing everything.</p>
+  </div>
+  <pre><span class="cm">-- Delete all rows, keep the table structure</span>
+<span class="kw">TRUNCATE TABLE</span> employees;</pre>
+</div>
+
+<!-- SLIDE 8 : DML Intro / INSERT -->
+<div class="slide">
+  <h2>DML Command 1 — INSERT</h2>
+  <div class="card">
+    <span class="cmd">INSERT</span>
+    <p><b>Purpose:</b> Adds one or more new rows of data into an existing table. You specify the table name, the columns, and the values to be stored.</p>
+  </div>
+  <pre><span class="cm">-- Insert a single row</span>
+<span class="kw">INSERT INTO</span> employees (emp_id, first_name, last_name, salary)
+<span class="kw">VALUES</span> (1, <span class="str">'Prince'</span>, <span class="str">'Kumar'</span>, 75000.00);
+
+<span class="cm">-- Insert multiple rows at once</span>
+<span class="kw">INSERT INTO</span> employees (emp_id, first_name, salary)
+<span class="kw">VALUES</span> (2, <span class="str">'Anita'</span>, 62000.00),
+       (3, <span class="str">'Ravi'</span>, 58000.00);</pre>
+</div>
+
+<!-- SLIDE 9 : UPDATE -->
+<div class="slide">
+  <h2>DML Command 2 — UPDATE</h2>
+  <div class="card">
+    <span class="cmd">UPDATE</span>
+    <p><b>Purpose:</b> Modifies the values of existing rows. Always use a <b>WHERE clause</b> to target specific rows — without it, every row in the table will be updated!</p>
+  </div>
+  <pre><span class="cm">-- Give Prince a salary raise</span>
+<span class="kw">UPDATE</span> employees
+<span class="kw">SET</span> salary = 85000.00
+<span class="kw">WHERE</span> emp_id = 1;
+
+<span class="cm">-- Update every employee's salary (no WHERE)</span>
+<span class="kw">UPDATE</span> employees <span class="kw">SET</span> salary = salary * 1.10;</pre>
+</div>
+
+<!-- SLIDE 10 : DELETE -->
+<div class="slide">
+  <h2>DML Command 3 — DELETE</h2>
+  <div class="card">
+    <span class="cmd">DELETE</span>
+    <p><b>Purpose:</b> Removes one or more rows from a table based on a condition. Like UPDATE, the WHERE clause is critical — omitting it deletes <b>all rows</b> (but keeps the table structure).</p>
+  </div>
+  <pre><span class="cm">-- Delete one specific employee</span>
+<span class="kw">DELETE FROM</span> employees
+<span class="kw">WHERE</span> emp_id = 3;
+
+<span class="cm">-- Delete all rows (table remains)</span>
+<span class="kw">DELETE FROM</span> employees;</pre>
+</div>
+
+<!-- SLIDE 11 : Summary -->
+<div class="slide">
+  <h2>Summary — All 7 Commands</h2>
+  <table class="summary-table">
+    <tr><th>Command</th><th>Type</th><th>What it does</th></tr>
+    <tr><td>CREATE</td><td>DDL</td><td>Creates a new table / object</td></tr>
+    <tr><td>ALTER</td><td>DDL</td><td>Modifies table structure</td></tr>
+    <tr><td>DROP</td><td>DDL</td><td>Deletes table + data permanently</td></tr>
+    <tr><td>TRUNCATE</td><td>DDL</td><td>Removes all rows, keeps structure</td></tr>
+    <tr><td>INSERT</td><td>DML</td><td>Adds new rows of data</td></tr>
+    <tr><td>UPDATE</td><td>DML</td><td>Changes existing rows</td></tr>
+    <tr><td>DELETE</td><td>DML</td><td>Removes rows of data</td></tr>
+  </table>
+</div>
+
+<!-- SLIDE 12 : Thank You -->
+<div class="slide" style="text-align:center;">
+  <h1 style="font-size:4rem;">Thank You!</h1>
+  <p class="subtitle">Questions &amp; Discussion</p>
+  <div class="trainer" style="margin-top:40px;">
+    <div class="name">Prince Kumar</div>
+    <div class="role">Data Science &amp; Analytics Trainer</div>
+  </div>
+</div>
+
+<div class="nav">
+  <button onclick="prevSlide()">&#10094; Prev</button>
+  <span id="navInfo"></span>
+  <button onclick="nextSlide()">Next &#10095;</button>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+let cur = 0;
+function show(i){
+  cur = (i + slides.length) % slides.length;
+  slides.forEach((s,idx)=>s.classList.toggle('active', idx===cur));
+  document.getElementById('progress').style.width = ((cur+1)/slides.length*100)+'%';
+  document.getElementById('counter').textContent = 'Slide ' + (cur+1) + ' / ' + slides.length;
+  document.getElementById('navInfo').textContent = (cur+1) + ' / ' + slides.length;
+}
+function nextSlide(){ show(cur+1); }
+function prevSlide(){ show(cur-1); }
+document.addEventListener('keydown', e=>{
+  if(e.key==='ArrowRight' || e.key===' ' || e.key==='PageDown') nextSlide();
+  if(e.key==='ArrowLeft' || e.key==='PageUp') prevSlide();
+});
+show(0);
+</script>
+</body>
+</html>
